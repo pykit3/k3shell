@@ -1,0 +1,6 @@
+_extends: gh-config
+
+repository:
+  description: A python module to manage commands.
+  homepage: https://blog.openacid.com
+  topics: python, shell
