@@ -14,7 +14,7 @@ setuptools.setup(
     keywords=['python', 'shell'],
     python_requires='>=3.0',
 
-    install_requires=['k3dict>=0.1.0,<0.2'],
+    install_requires=['k3dict<0.2,>=0.1.0'],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
