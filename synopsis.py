@@ -1,30 +1,34 @@
 import k3shell
 import sys
+
 arguments = {
-    'echo_repr': (
+    "echo_repr": (
         lambda x: sys.stdout.write(repr(x)),
-        ('x', {'nargs': '+', 'help': 'just an input message'}),
+        ("x", {"nargs": "+", "help": "just an input message"}),
     ),
-
-    'foo': {
-        'bar': lambda: sys.stdout.write('bar'),
-
-        'bob': {
-            'plus': (
+    "foo": {
+        "bar": lambda: sys.stdout.write("bar"),
+        "bob": {
+            "plus": (
                 lambda x, y: sys.stdout.write(str(x + y)),
-                ('x', {'type': int, help: 'an int is needed'}),
-                ('y', {'type': int, help: 'an int is needed'}),
+                ("x", {"type": int, help: "an int is needed"}),
+                ("y", {"type": int, help: "an int is needed"}),
             ),
         },
     },
-
-    '__add_help__': {
-        ('echo_repr',)           : 'output what is input.',
-        ('foo', 'bar',)          : 'print a "bar".',
-        ('foo', 'bob', 'plus',)  : 'do addition operation with 2 numbers.',
+    "__add_help__": {
+        ("echo_repr",): "output what is input.",
+        (
+            "foo",
+            "bar",
+        ): 'print a "bar".',
+        (
+            "foo",
+            "bob",
+            "plus",
+        ): "do addition operation with 2 numbers.",
     },
-
-    '__description__': 'this is an example command.',
+    "__description__": "this is an example command.",
 }
 
 k3shell.command(**arguments)

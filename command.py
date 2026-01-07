@@ -45,16 +45,14 @@ def command(**kwargs):
     try:
         cmds = []
         while len(inputs) > 0 and inputs[0] in root:
-
             k = inputs.pop(0)
             cmds.append(k)
             node = root[k]
 
             if is_node_executable(node):
-
                 call_able, args = parse_executable_node(parser, cmds, node, inputs)
                 try:
-                    logger.debug("command: " + repr(cmds) + ' args: ' + repr(args) + ' cwd: ' + repr(os.getcwd()))
+                    logger.debug("command: " + repr(cmds) + " args: " + repr(args) + " cwd: " + repr(os.getcwd()))
                     rc = call_able(*args)
                     logger.debug(repr(rc))
                     if rc is True or rc == 0 or rc is None:
@@ -71,15 +69,14 @@ def command(**kwargs):
                 root = node
 
         if need_to_show_help(parser):
-
             if len(cmds) > 0:
-                argv = [' '.join(cmds)] + inputs
+                argv = [" ".join(cmds)] + inputs
             else:
                 argv = inputs
 
             parser.parse_args(argv)
         else:
-            sys.stderr.write('No such command: ' + ' '.join(sys.argv[1:]))
+            sys.stderr.write("No such command: " + " ".join(sys.argv[1:]))
 
         sys.exit(2)
 
@@ -92,24 +89,23 @@ def command(**kwargs):
 def add_command_help(commands):
     new_cmds = copy.deepcopy(commands)
 
-    help_msgs = new_cmds.get('__add_help__')
-    desc = new_cmds.get('__description__')
+    help_msgs = new_cmds.get("__add_help__")
+    desc = new_cmds.get("__description__")
 
-    for k in ('__add_help__', '__description__'):
+    for k in ("__add_help__", "__description__"):
         if k in new_cmds:
             del new_cmds[k]
 
     if help_msgs is None:
         return new_cmds, None
 
-    parser = argparse.ArgumentParser(description=desc, epilog='\n')
+    parser = argparse.ArgumentParser(description=desc, epilog="\n")
 
-    subparsers = parser.add_subparsers(help=' command(s) to select ...')
+    subparsers = parser.add_subparsers(help=" command(s) to select ...")
 
     for cmds, execute_able in k3dict.depth_iter(new_cmds):
-
-        help = help_msgs.get(tuple(cmds), '')
-        cmd = ' '.join(cmds)
+        help = help_msgs.get(tuple(cmds), "")
+        cmd = " ".join(cmds)
 
         cmd_parser = subparsers.add_parser(cmd, help=help)
 
@@ -129,7 +125,7 @@ def add_param_help(parser, param_msgs):
     params = []
     for param, msg in param_msgs:
         parser.add_argument(param, **msg)
-        param = param.lstrip('-')
+        param = param.lstrip("-")
         params.append(param)
 
     return params
@@ -137,14 +133,13 @@ def add_param_help(parser, param_msgs):
 
 def parse_executable_node(parser, cmds, execute_able, args):
     if not need_to_show_help(parser):
-
         # no __add_help__ but has paramter help message
         if args_need_to_parse(execute_able):
             return execute_able[0], args
 
         return execute_able, args
 
-    args_parsed = parser.parse_args([' '.join(cmds)] + args)
+    args_parsed = parser.parse_args([" ".join(cmds)] + args)
     # to dict
     args_parsed = vars(args_parsed)
 
@@ -154,7 +149,6 @@ def parse_executable_node(parser, cmds, execute_able, args):
     call_able, params = execute_able
 
     args = [args_parsed.get(x) for x in params]
-
 
     return call_able, args
 

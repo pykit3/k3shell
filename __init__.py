@@ -8,8 +8,10 @@ k3shell
 The library is considered production ready.
 
 """
-__version__ = "0.1.0"
-__name__ = "k3shell"
+
+from importlib.metadata import version
+
+__version__ = version("k3shell")
 
 from .command import (
     command,

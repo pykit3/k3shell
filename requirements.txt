@@ -1,3 +1,0 @@
--r _building/requirements.txt
-
-k3dict>=0.1.0,<0.2
