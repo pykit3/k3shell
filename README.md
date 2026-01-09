@@ -1,7 +1,6 @@
 # k3shell
 
 [![Action-CI](https://github.com/pykit3/k3shell/actions/workflows/python-package.yml/badge.svg)](https://github.com/pykit3/k3shell/actions/workflows/python-package.yml)
-[![Build Status](https://travis-ci.com/pykit3/k3shell.svg?branch=master)](https://travis-ci.com/pykit3/k3shell)
 [![Documentation Status](https://readthedocs.org/projects/k3shell/badge/?version=stable)](https://k3shell.readthedocs.io/en/stable/?badge=stable)
 [![Package](https://img.shields.io/pypi/pyversions/k3shell)](https://pypi.org/project/k3shell)
 
