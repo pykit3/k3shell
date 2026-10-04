@@ -29,8 +29,9 @@ pip install k3shell
 # Synopsis
 
 ```python
-import k3shell
 import sys
+
+import k3shell
 
 arguments = {
     "echo_repr": (
@@ -111,13 +112,13 @@ optional arguments:
 
 #   Author
 
-Wenbo Li(李文博) <wenbo.li@baishancloud.com>
+Zhang Yanpo (张炎泼) <drdr.xp@gmail.com>
 
 #   Copyright and License
 
 The MIT License (MIT)
 
-Copyright (c) 2017 Wenbo Li(李文博) <wenbo.li@baishancloud.com>
+Copyright (c) 2015 Zhang Yanpo (张炎泼) <drdr.xp@gmail.com>
 
 
 [pykit3]: https://github.com/pykit3
