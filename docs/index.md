@@ -22,15 +22,15 @@ import sys
 
 # Define command structure with nested subcommands
 arguments = {
-    'echo': (
+    "echo": (
         lambda x: sys.stdout.write(repr(x)),
-        ('x', {'nargs': '+', 'help': 'input message'}),
+        ("x", {"nargs": "+", "help": "input message"}),
     ),
-    'math': {
-        'add': (
+    "math": {
+        "add": (
             lambda x, y: print(x + y),
-            ('x', {'type': int}),
-            ('y', {'type': int}),
+            ("x", {"type": int}),
+            ("y", {"type": int}),
         ),
     },
 }

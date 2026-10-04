@@ -1,10 +1,10 @@
-#!/usr/bin/env python2
 # conding: utf-8
 
-import os
-import unittest
 import logging
+import os
 import sys
+import unittest
+
 import k3shell
 
 # Python 3.10+ changed argparse help text from "optional arguments:" to "options:"
@@ -23,7 +23,7 @@ class TestCommand(unittest.TestCase):
         sys.argv = self.backup_argv
         try:
             os.remove(self.out_buf)
-        except EnvironmentError as e:
+        except OSError as e:
             sys.stderr.write(repr(e))
 
     def execute_test(self, arguments, argv, out_str, exit_code):

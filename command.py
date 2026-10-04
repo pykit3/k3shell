@@ -1,11 +1,8 @@
-#!/usr/bin/env python2
-# coding: utf-8
-
 import argparse
 import copy
-import sys
 import logging
 import os
+import sys
 
 import k3dict
 
@@ -61,7 +58,7 @@ def command(**kwargs):
                         sys.exit(1)
 
                 except Exception as e:
-                    logger.exception(repr(e))
+                    logger.exception(f"command {cmds!r} failed")
                     sys.stderr.write(repr(e))
                     sys.exit(1)
 
@@ -81,7 +78,7 @@ def command(**kwargs):
         sys.exit(2)
 
     except Exception as e:
-        logger.exception(repr(e))
+        logger.exception(f"failed to handle arguments {sys.argv[1:]!r}")
         sys.stderr.write(repr(e))
         sys.exit(1)
 

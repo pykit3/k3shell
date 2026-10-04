@@ -1,5 +1,6 @@
-import k3shell
 import sys
+
+import k3shell
 
 arguments = {
     "echo_repr": (
