@@ -125,9 +125,9 @@ def add_command_help(commands):
 def add_param_help(parser, param_msgs):
     params = []
     for param, msg in param_msgs:
-        parser.add_argument(param, **msg)
-        param = param.lstrip("-")
-        params.append(param)
+        # argparse may store the value under another name, such as "output_file" for "--output-file".
+        action = parser.add_argument(param, **msg)
+        params.append(action.dest)
 
     return params
 

@@ -130,6 +130,24 @@ class TestCommand(unittest.TestCase):
 
             self.assertEqual(exit_code, ctx.exception.code, repr(rc))
 
+    def test_command_param_with_hyphen(self):
+        got = []
+        commands = {
+            "write": (
+                lambda output_file: got.append(output_file),
+                ("--output-file", {"help": "the file to write"}),
+            ),
+            "__add_help__": {("write",): "write a file"},
+        }
+
+        # argparse stores the value of "--output-file" as "output_file".
+        sys.argv = ["python", "write", "--output-file", "a.txt"]
+        with self.assertRaises(SystemExit) as ctx:
+            k3shell.command(**commands)
+
+        self.assertEqual(0, ctx.exception.code)
+        self.assertEqual(["a.txt"], got)
+
     def test_command_execute_normal(self):
         testcases = (
             (
