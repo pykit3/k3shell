@@ -52,6 +52,10 @@ def command(**kwargs):
                     logger.debug("command: " + repr(cmds) + " args: " + repr(args) + " cwd: " + repr(os.getcwd()))
                     rc = call_able(*args)
                     logger.debug(repr(rc))
+                    # `False == 0` holds, so False is checked before the exit code 0.
+                    if rc is False:
+                        sys.exit(1)
+
                     if rc is True or rc == 0 or rc is None:
                         sys.exit(0)
                     else:

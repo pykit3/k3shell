@@ -114,6 +114,22 @@ class TestCommand(unittest.TestCase):
         for arguments, argv, out_str, exit_code in testcases:
             self.execute_test(arguments, argv, out_str, exit_code)
 
+    def test_command_exit_code(self):
+        testcases = (
+            (True, 0),
+            (None, 0),
+            (0, 0),
+            (False, 1),
+            (1, 1),
+        )
+
+        for rc, exit_code in testcases:
+            sys.argv = ["python", "cmd"]
+            with self.assertRaises(SystemExit) as ctx:
+                k3shell.command(cmd=lambda rc=rc: rc)
+
+            self.assertEqual(exit_code, ctx.exception.code, repr(rc))
+
     def test_command_execute_normal(self):
         testcases = (
             (
